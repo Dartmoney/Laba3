@@ -12,6 +12,8 @@ int main( int argc,char* argv[])
         FILE * file = fopen(argv[2],"r");
         fgets(str,600,file);
         printf("%s",str);
+        fgets(str,600,file);
+        printf("%s",str);
         return 1;
     }
     printf("Hello, World!\n");

@@ -13,6 +13,6 @@ typedef struct Stack_tag {
 int push(Stack_t stack, int a);
 int pop(Stack_t stack);
 int empty(Stack_t s);
-void inclusionSort(Stack_t num);
+void inclusionSort(int* num, int size);
 int sort();
 #endif //LABA3_HEADER_H
