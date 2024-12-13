@@ -6,6 +6,9 @@
 #define LABA3_HEADER_H
 
 
+
+
+
 typedef struct Stack_tag {
     int data[40];
     int size;
