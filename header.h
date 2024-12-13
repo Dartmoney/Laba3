@@ -7,8 +7,6 @@
 
 
 
-
-
 typedef struct Stack_tag {
     int data[40];
     int size;
