@@ -6,7 +6,7 @@
 int main( int argc,char* argv[])
 {
     SetConsoleOutputCP(65001);
-    if(argc!=2)
+    if(argc==3)
     {
         char *str;
         FILE * file = fopen(argv[2],"r");
@@ -16,7 +16,6 @@ int main( int argc,char* argv[])
         printf("%s",str);
         return 1;
     }
-    printf("Hello, World!\n");
     sort();
     return 0;
 }
