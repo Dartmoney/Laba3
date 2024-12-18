@@ -73,6 +73,13 @@ int pop(Stack_t **head) {
     free(prev);
     return val;
 }
+void printLinkedList(const Stack_t *head) {
+    while (head) {
+        printf("%d ", head->data);
+        head = head->back;
+    }
+    printf("\n");
+}
 //
 //Stack_t * getNth(Stack_t * head, int n) {
 //    int counter = 0;

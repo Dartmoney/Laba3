@@ -5,27 +5,78 @@
 #include <string.h>
 #define _CRT_SECURE_NO_WARNINGS // для корректной работы scanf()
 // Функция сортировки прямыми включениями
-void inclusionSort(int* num, int size)
+Stack_t * inclusionSort(Stack_t *head)
 {
-    // Для всех элементов кроме начального
-    for (int i = 1; i < size; i++)
+    int k =9;
+    Stack_t *otvet = NULL;
+    Stack_t *minor = NULL;
+    int minik = 100000000;
+    int prom;
+
+
+    for (int i = 0; i < 9; i++)
     {
-        int value = num[i]; // запоминаем значение элемента
-        int index = i;     // и его индекс
-        while ((index > 0) && (num[index - 1] > value))
-        {   // смещаем другие элементы к концу массива пока они меньше index
-            num[index] = num[index - 1];
-            index--;    // смещаем просмотр к началу массива
+
+        if (i%2 == 0)
+        {
+            printLinkedList(head);
+            minik = pop(&head);
         }
-        num[index] = value; // рассматриваемый элемент помещаем на освободившееся место
+        else {
+            printLinkedList(minor);
+            minik = pop(&minor);
+        }
+        printf("%d\n",minik);
+        for (int p=0;p<k; p++)
+        {
+            if (i%2 == 0)
+            {
+                prom = pop(&head);
+            }
+            else
+            {
+                prom = pop(&minor);
+            }
+            if (prom<minik)
+            {
+                if (i%2 == 0)
+                {
+                    push(&minor,minik);
+                }
+                else
+                {
+                    push(&head,minik);
+                }
+                minik = prom;
+            }
+            else
+            {
+                if (i % 2 == 0)
+                {
+                    push(&minor,prom);
+                }
+                else
+                {
+
+                    push(&head,prom);
+                }
+            }
+        }
+        k --;
+        push(&otvet,minik);
+        // рассматриваемый элемент помещаем на освободившееся место
     }
+    push(&otvet,pop(&minor));
+    return otvet;
+
 
 
 }
 
 int sort()
 {
-    int a[20];
+    int a[10];
+    Stack_t *stack = NULL;
     char b[10];// Объявляем массив из 10 элементов
     // Вводим значения элементов массива
     size_t N = sizeof(b);
@@ -38,18 +89,18 @@ int sort()
         scanf("%d", &a[i]);
         fprintf(file,"%4d ",a[i]);
     }
-
-
-    inclusionSort(a, 10);  // вызываем функцию сортировки
+    fromArray(&stack,a,10);
+    stack = inclusionSort(stack);
+    printf("asss");// вызываем функцию сортировки
     // Выводим отсортированные элементы массива
+    printLinkedList(stack);
     fprintf(file,"\nОтсортированные числа: ");
-    for (int i = 0; i < 10; i++) {
-        fprintf(file, "%4d ", a[i]);
+    int chislo = 0;
+    for (int i = 0; i < 9; i++) {
+        chislo = pop(&stack);
+        fprintf(file, "%4d ", chislo);
     }
-    for (int i = 0; i < 10; i++)
-        printf("%d ", a[i]);
-    getchar();
-    getchar();
+    printLinkedList(stack);
     fclose(file);
     return 0;
 }

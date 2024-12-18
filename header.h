@@ -11,6 +11,7 @@ typedef struct Stack_tag {
     int data;
     struct Stack_tag *back;
 } Stack_t;
+void printLinkedList(const Stack_t *head);
 void fromArray(Stack_t **head, int *arr, int size);
 int proverka(char* ss[]);
 void push(Stack_t **head, int a);
