@@ -6,10 +6,12 @@
 int main( int argc,char* argv[])
 {
     SetConsoleOutputCP(65001);
-    if(argc==3)
+
+    int ind = proverka(argv);
+    if(ind)
     {
-        char *str;
-        FILE * file = fopen(argv[2],"r");
+        char str[600];
+        FILE * file = fopen(argv[ind + 1],"r");
         fgets(str,600,file);
         printf("%s",str);
         fgets(str,600,file);

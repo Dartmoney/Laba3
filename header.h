@@ -8,12 +8,20 @@
 
 
 typedef struct Stack_tag {
-    int data[40];
-    int size;
+    int data;
+    struct Stack_tag *back;
 } Stack_t;
-int push(Stack_t stack, int a);
-int pop(Stack_t stack);
-int empty(Stack_t s);
-void inclusionSort(int* num, int size);
+void fromArray(Stack_t **head, int *arr, int size);
+int proverka(char* ss[]);
+void push(Stack_t **head, int a);
+int pop(Stack_t **head);
+Stack_t * inclusionSort(Stack_t *stack);
 int sort();
+//Stack_t * getLast(Stack_t *head);
+//Stack_t * getNth(Stack_t * head, int n);
+//Stack_t * getLastButOne(Stack_t * head);
+//void pushBack(Stack_t *head, int value);
+//void insert(Stack_t *head, unsigned n, int val);
+void popBack(Stack_t **head);
+//void insert(Stack_t *head, unsigned n, int val);
 #endif //LABA3_HEADER_H
