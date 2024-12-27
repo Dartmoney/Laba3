@@ -15,6 +15,7 @@
 //    }
 //    return head;
 //}
+
 void push(Stack_t **head, int data) {
     Stack_t *tmp = (Stack_t *) malloc(sizeof(Stack_t));
     tmp->data = data;
@@ -35,7 +36,7 @@ int proverka(char* ss[])
         }
         schet = 1;
         printf("%c\n",ss[i][0]);
-        for (int p =0;p< 6;p++)
+        for (int p = 0;p < 6;p++)
         {
             if (ss[i][p] != word[p])
             {

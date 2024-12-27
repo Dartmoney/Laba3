@@ -104,3 +104,85 @@ int sort()
     fclose(file);
     return 0;
 }
+void merge(Stack_t *a, Stack_t *b, Stack_t **c) {
+    Stack_t tmp;
+    *c = NULL;
+    if (a == NULL) {
+        *c = b;
+        return;
+    }
+    if (b == NULL) {
+        *c = a;
+        return;
+    }
+    if (a->data < b->data) {
+        *c = a;
+        a = a->back;
+    } else {
+        *c = b;
+        b = b->back;
+    }
+    tmp.back = *c;
+    while (a && b) {
+        if (a->data < b->data) {
+            (*c)->back = a;
+            a = a->back;
+        } else {
+            (*c)->back = b;
+            b = b->back;
+        }
+        (*c) = (*c)->back;
+    }
+    if (a) {
+        while (a) {
+            (*c)->back = a;
+            (*c) = (*c)->back;
+            a = a->back;
+        }
+    }
+    if (b) {
+        while (b) {
+            (*c)->back = b;
+            (*c) = (*c)->back;
+            b = b->back;
+        }
+    }
+    *c = tmp.back;
+}
+void split(Stack_t *src, Stack_t **low, Stack_t **high) {
+    Stack_t *fast = NULL;
+    Stack_t *slow = NULL;
+
+    if (src == NULL || src->back == NULL) {
+        (*low) = src;
+        (*high) = NULL;
+        return;
+    }
+
+    slow = src;
+    fast = src->back;
+
+    while (fast != NULL) {
+        fast = fast->back;
+        if (fast != NULL) {
+            fast = fast->back;
+            slow = slow->back;
+        }
+    }
+
+    (*low) = src;
+    (*high) = slow->back;
+    slow->back = NULL;
+}
+
+void mergeSort(Stack_t **head) {
+    Stack_t *low  = NULL;
+    Stack_t *high = NULL;
+    if ((*head == NULL) || ((*head)->back == NULL)) {
+        return;
+    }
+    split(*head, &low, &high);
+    mergeSort(&low);
+    mergeSort(&high);
+    merge(low, high, head);
+}

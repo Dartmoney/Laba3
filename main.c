@@ -18,6 +18,7 @@ int main( int argc,char* argv[])
         printf("%s",str);
         return 1;
     }
+
     sort();
     return 0;
 }
